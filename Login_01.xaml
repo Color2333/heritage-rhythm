@@ -1,0 +1,50 @@
+﻿<Page x:Class="heritage_rhythm.Login_01"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:uc="clr-namespace:heritage_rhythm.UserControls"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="650"
+      Title="Login_01">
+    <Grid>
+        <Border Background="#FFFFFF" CornerRadius="0 10 10 0" >
+            <StackPanel VerticalAlignment="Center">
+                <Button x:Name="change" Style="{StaticResource secondaryButton3}" Content="切换商家版" Click="change_Click" />
+
+                <TextBlock Margin="0 10 0 15" Foreground="#878787" Style="{StaticResource NormalText}" ><Run Language="zh-cn" Text=""/><Run Text="使用邮箱密码登录"/></TextBlock>
+
+                <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="70 7" CornerRadius="5">
+                    <Grid Margin="7 9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/Email.png" Height="20" />
+                        <TextBlock x:Name="textEmail" MouseDown="textEmail_MouseDown" Text="邮箱" Style="{StaticResource textHint}" />
+                        <TextBox x:Name="txtEmail" TextChanged="txtEmail_TextChanged" Style="{StaticResource textBox}" />
+                    </Grid>
+                </Border>
+
+                <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="70 7" CornerRadius="5">
+                    <Grid Margin="7 9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/Lock.png" Height="20" />
+                        <TextBlock x:Name="textPassword" MouseDown="textPassword_MouseDown" Text="密码" Style="{StaticResource textHint}" />
+                        <PasswordBox x:Name="passwordBox" PasswordChanged="PasswordBox_PasswordChanged" Style="{StaticResource textBox}" />
+                    </Grid>
+                </Border>
+
+                <Button Content="登录" Click="Button_Click" Style="{StaticResource mainButton}" />
+                <Button Content="注册" Style="{StaticResource button}" Foreground="#955539" Click="Button_Click_1" />
+            </StackPanel>
+        </Border>
+        <TextBlock Text="遗韵 " Foreground="#955539" Style="{StaticResource TitleText}" RenderTransformOrigin="0.496,-2.129" Margin="0,81,0,523" />
+    </Grid>
+
+</Page>

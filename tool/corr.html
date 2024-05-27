@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品与用户匹配度线性拟合图</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<h1>商品与用户匹配度线性拟合图</h1>
+<!-- 下拉选择框 -->
+<div>
+    <label for="userSelect">选择用户:</label>
+    <select id="userSelect">
+        <option value="user1">mc</option>
+        <option value="user2">无可厚非</option>
+        <option value="user3">姜昊</option>
+    </select>
+    <label for="userSelect">选择产品类型:</label>
+    <select id="productSelect">
+        <option value="product1">非遗产品</option>
+        <option value="product2">农产品</option>
+        <option value="product3">生活用品</option>
+    </select>
+</div>
+<div style="width: 800px; height: 400px;">
+    <canvas id="fitChart"></canvas>
+</div>
+
+<script src="chart-setup.js"></script>
+</body>
+</html>
+

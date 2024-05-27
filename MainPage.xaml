@@ -1,0 +1,71 @@
+﻿<Page x:Class="heritage_rhythm.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:uc="clr-namespace:heritage_rhythm.UserControls"
+      xmlns:local="clr-namespace:heritage_rhythm"
+      mc:Ignorable="d" 
+      d:DesignHeight="830" d:DesignWidth="1000"
+      Title="MainPage" Background="#ECF0F1">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Top Part-->
+        <StackPanel Grid.Column="0">
+            <!--Top Menu-->
+            <Grid Margin="35 25 35 20">
+                <!--TextBox Search-->
+                <Border BorderBrush="#F3F3F3" Background="#F3F3F3" BorderThickness="1" CornerRadius="5" HorizontalAlignment="Left" Width="771">
+                    <Grid Margin="7 9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Images/explore.png" Height="20" Margin="5 0 0 0"/>
+                        <TextBlock x:Name="textSearch" MouseDown="textSearch_MouseDown" Text="在此处搜索" Style="{StaticResource textHint}"/>
+                        <TextBox Name="txtSearch" TextChanged="txtSearch_TextChanged" KeyDown="txtSearch_KeyDown" Style="{StaticResource textBox}"/>
+                    </Grid>
+                </Border>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="797,0,0,0">
+                    <Button Style="{StaticResource roundButton2}" Click="SearchButton_Click">
+                        <Image Source="/Images/explore.png" Width="22"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="35 20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="26*"/>
+                    <ColumnDefinition Width="67*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="商品" FontSize="20" Foreground="#333333" FontWeight="Bold" HorizontalAlignment="Left"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="1" Margin="528,0,0,0">
+                    <Label x:Name="popularlabel" Content="热度最高" Style="{StaticResource activeTextButton}" MouseUp="Likelabel_OnMouseUp"/>
+                    <Label x:Name="likelabel" Content="猜你喜欢" Style="{StaticResource textButton}" Margin="15 0 0 0" MouseUp="UIElement_OnMouseUp"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <!--Posts-->
+        <ScrollViewer Grid.Column="0" Margin="35,160,30,19" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2">
+            <ScrollViewer.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.041"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-0.333"/>
+                </TransformGroup>
+            </ScrollViewer.RenderTransform>
+            <WrapPanel x:Name="wrapPanel" Margin="10" >
+                <!-- 这里将会动态加载商品 -->
+            </WrapPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

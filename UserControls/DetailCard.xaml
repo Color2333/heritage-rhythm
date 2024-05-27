@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="heritage_rhythm.UserControls.DetailCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:heritage_rhythm.UserControls"
+             mc:Ignorable="d" Name="detailCard"  >
+    <Border Background="#7c4b00" CornerRadius="7" Margin="30 4" BorderThickness="1">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Setter Property="BorderBrush" Value="Transparent" />
+            </Style>
+        </Border.Style>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="135"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Border CornerRadius="50" Width="45" Height="45" Background="#ffffff" Margin="20 10 20 10">
+                <Ellipse Width="42" Height="42">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding ElementName=detailCard,Path=Image}" Stretch="UniformToFill"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Border>
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <TextBlock Text="{Binding ElementName=detailCard,Path=Title}" FontSize="14" Foreground="White"/>
+                <TextBlock Text="{Binding ElementName=detailCard,Path=Time}" FontSize="11" FontWeight="Light" Margin="0 3 0 0" Foreground="White"/>
+            </StackPanel>
+
+            <Border Grid.Column="2" CornerRadius="50" Width="25" Height="25" Background="#7c4b76">
+                <TextBlock Text="{Binding ElementName=detailCard,Path=Number}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10"/>
+            </Border>
+
+        </Grid>
+    </Border>
+</UserControl>
