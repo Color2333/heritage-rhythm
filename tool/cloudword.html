@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>词云图示例</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-cloud/build/d3.layout.cloud.js"></script>
+</head>
+<body>
+<svg width="960" height="600"></svg>
+<script>
+    var words = [
+        {text: "农产品", size: 90},
+        {text: "非遗", size: 80},
+        {text: "番茄", size: 20},
+        {text: "玉米", size: 50},
+        {text: "折扇", size: 25},
+        {text: "扇子", size: 35},
+        {text: "济忆山海", size: 15},
+        {text: "河南非遗", size: 15},
+        {text: "木雕", size: 15}
+    ];
+
+    var layout = d3.layout.cloud()
+        .size([960, 600])
+        .words(words.map(function(d) {
+            return {text: d.text, size: d.size};
+        }))
+        .padding(5)
+        .rotate(function() { return ~~(Math.random() * 2) * 90; })
+        .font("Impact")
+        .fontSize(function(d) { return d.size; })
+        .on("end", draw);
+
+    layout.start();
+
+    function draw(words) {
+        d3.select("svg")
+            .append("g")
+            .attr("transform", "translate(480,300)")
+            .selectAll("text")
+            .data(words)
+            .enter().append("text")
+            .style("font-size", function(d) { return d.size + "px"; })
+            .style("font-family", "Impact")
+            .attr("text-anchor", "middle")
+            .attr("transform", function(d) {
+                return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+            })
+            .text(function(d) { return d.text; });
+    }
+</script>
+</body>
+</html>
