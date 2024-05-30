@@ -36,6 +36,7 @@
 
             <!--Top Buttons-->
             <!--Page Title-->
+            <TextBlock Text="总管理" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
 
             <!--Add Button-->
             <Button Style="{StaticResource addButton1}" Click="Button_Click" Height="35" Margin="0,23,0,0" Grid.Row="2" VerticalAlignment="Top">
