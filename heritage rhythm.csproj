@@ -252,6 +252,9 @@
     <Compile Include="edit.xaml.cs">
       <DependentUpon>edit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Login_03.xaml.cs">
+      <DependentUpon>Login_03.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Map.xaml.cs">
       <DependentUpon>Map.xaml</DependentUpon>
     </Compile>
@@ -311,8 +314,8 @@
     <Compile Include="UserControls\elseset.xaml.cs">
       <DependentUpon>elseset.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\CardDay.xaml.cs">
-      <DependentUpon>CardDay.xaml</DependentUpon>
+    <Compile Include="UserControls\Card.xaml.cs">
+      <DependentUpon>Card.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Chat Seprator.xaml.cs">
       <DependentUpon>Chat Seprator.xaml</DependentUpon>
@@ -427,6 +430,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Login_03.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Map.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -516,7 +523,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\CardDay.xaml">
+    <Page Include="UserControls\Card.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

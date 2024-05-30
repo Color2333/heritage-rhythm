@@ -20,24 +20,25 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-
+            <TextBlock Text="总管理" Grid.Row="0" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
             <!--Search Textbox-->
-            <Grid Width="300" HorizontalAlignment="Left">
+            <Grid Width="300" HorizontalAlignment="Left" Margin="575,0,0,58" Grid.RowSpan="3">
                 <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
                            Panel.ZIndex="1" Text="在此处搜索"
                            />
 
                 <TextBox Name="textBoxSearch" Style="{StaticResource searchTextbox1}"/>
 
-                <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center" Margin="0 0 15 0" Foreground="#B0B9C6" HorizontalAlignment="Right" />
+                <Button Style="{StaticResource roundButton2}"  Margin="316,12,-49,12" >
+                    <Image Source="/Images/explore.png" Width="22" RenderTransformOrigin="9.591,0.623"/>
+                </Button>
             </Grid>
 
             <!--Top Buttons-->
             <!--Page Title-->
-            <TextBlock Text="总管理" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
 
             <!--Add Button-->
-            <Button Style="{StaticResource addButton1}" Click="Button_Click" Height="35" Margin="0,23,0,0" Grid.Row="1" VerticalAlignment="Top">
+            <Button Style="{StaticResource addButton1}" Click="Button_Click" Height="35" Margin="0,23,0,0" Grid.Row="2" VerticalAlignment="Top">
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
                     <TextBlock Text="发布新的商品"/>

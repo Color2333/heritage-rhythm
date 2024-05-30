@@ -100,11 +100,52 @@ namespace heritage_rhythm
             }
         }
 
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            // 获取用户输入的搜索关键字
+            string keyword = textBoxSearch.Text;
 
+            var users = new ObservableCollection<User>();
+            try
+            {
+                connection.Open();
+                // 在查询中使用搜索关键字
+                string query = "SELECT userid, usernick, usermail, username, usersex, userrole, creation_time, update_time, phonenumber FROM users WHERE usernick LIKE @Keyword OR userid LIKE @Keyword OR usermail LIKE @Keyword OR username LIKE @Keyword";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Keyword", "%" + keyword + "%");
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    users.Add(new User
+                    {
+                        UserId = reader.GetInt32(reader.GetOrdinal("userid")),
+                        UserNick = reader.GetString(reader.GetOrdinal("usernick")),
+                        UserMail = reader.IsDBNull(reader.GetOrdinal("usermail")) ? null : reader.GetString(reader.GetOrdinal("usermail")),
+                        UserName = reader.IsDBNull(reader.GetOrdinal("username")) ? null : reader.GetString(reader.GetOrdinal("username")),
+                        UserSex = reader.IsDBNull(reader.GetOrdinal("usersex")) ? null : reader.GetString(reader.GetOrdinal("usersex")),
+                        UserRole = reader.GetInt32(reader.GetOrdinal("userrole")),
+                        CreationTime = reader.GetDateTime(reader.GetOrdinal("creation_time")),
+                        UpdateTime = reader.GetDateTime(reader.GetOrdinal("update_time")),
+                        PhoneNumber = reader.IsDBNull(reader.GetOrdinal("phonenumber")) ? null : reader.GetString(reader.GetOrdinal("phonenumber"))
+                    });
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("搜索用户信息时出现错误：" + ex.Message);
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
 
-
-
-
+            // 更新数据源
+            userDataGrid.ItemsSource = users;
+        }
 
     }
 }

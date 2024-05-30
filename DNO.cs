@@ -9,7 +9,7 @@ namespace heritage_rhythm
 {
     internal class DNO
     {
-        private string connectionstr = "Data Source=rm-bp18s2069235f0xl1vo.sqlserver.rds.aliyuncs.com, 3433;Initial Catalog=HeritageRhythm;Persist Security Info=True;User ID=thinkbook;password=Zyc123456;";
+        private string connectionstr = "Data Source=rm-bp192w71wi0wn9936lo.sqlserver.rds.aliyuncs.com, 3433;Initial Catalog=HeritageRhythm;Persist Security Info=True;User ID=zycjhhyx;password=Hyx123456;";
         public SqlConnection Connection()
         {
             try

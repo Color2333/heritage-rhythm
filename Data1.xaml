@@ -20,6 +20,17 @@
             <Rectangle VerticalAlignment="Stretch" Fill="#808080" Width="0.7" Margin="20 5 20 5"/>
             <TextBlock Text="管理用户" FontSize="26" VerticalAlignment="Center"/>
         </StackPanel>
+        <Grid Width="300" HorizontalAlignment="Right" Margin="0,15,63,5">
+            <TextBlock x:Name="searchTextBox" Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
+                           Panel.ZIndex="1" Text="在此处搜索"
+                           />
+
+            <TextBox Name="textBoxSearch" Style="{StaticResource searchTextbox1}"/>
+
+            <Button Style="{StaticResource roundButton2}" Click="SearchButton_Click" Margin="316,12,-49,12" >
+                <Image Source="/Images/explore.png" Width="22" RenderTransformOrigin="9.591,0.623"/>
+            </Button>
+        </Grid>
         <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}"
                   ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
                   CellStyle="{DynamicResource DataGridCellStyle1}"

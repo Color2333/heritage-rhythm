@@ -88,6 +88,62 @@ namespace heritage_rhythm
 
             ordersDataGrid.ItemsSource = orders; // 绑定到 DataGrid
         }
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            // 获取用户输入的搜索关键字
+            string keyword = textBoxSearch.Text;
+
+            var orders = new ObservableCollection<Order>();
+
+            try
+            {
+                connection.Open();
+                // 在查询中使用搜索关键字
+                string query = @"SELECT 
+                            o.OrderId, 
+                            u.usernick AS UserNick, 
+                            p.name AS ProductName, 
+                            o.PurchaseQuantity, 
+                            o.OrderTime
+                        FROM 
+                            orders o
+                            INNER JOIN users u ON o.UserId = u.userid
+                            INNER JOIN products p ON o.ProductId = p.product_id
+                        WHERE 
+                            u.usernick LIKE @Keyword OR p.name LIKE @Keyword";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Keyword", "%" + keyword + "%");
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    orders.Add(new Order
+                    {
+                        OrderId = Convert.ToInt32(reader["OrderId"]),
+                        UserNick = reader["UserNick"].ToString(),
+                        ProductName = reader["ProductName"].ToString(),
+                        Quantity = Convert.ToInt32(reader["PurchaseQuantity"]),
+                        OrderTime = Convert.ToDateTime(reader["OrderTime"])
+                    });
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("搜索订单信息时出现错误：" + ex.Message);
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
+
+            ordersDataGrid.ItemsSource = orders; // 绑定到 DataGrid
+        }
+
+
 
 
     }

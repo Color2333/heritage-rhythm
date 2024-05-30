@@ -1,4 +1,5 @@
-﻿using Microsoft.Maps.MapControl.WPF;
+﻿using heritage_rhythm.UserControls;
+using Microsoft.Maps.MapControl.WPF;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -122,5 +123,7 @@ namespace heritage_rhythm
     {
         public string Name { get; set; }
         public Location Location { get; set; }
+        public List<Card> Items { get; set; } = new List<Card>();
     }
+
 }

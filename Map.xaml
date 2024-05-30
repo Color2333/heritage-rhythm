@@ -27,9 +27,19 @@
                 <m:MapItemsControl Name="mapItems">
                     <m:MapItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <m:Pushpin Location="{Binding Location}" Content="{Binding Name}" MouseDown="Pushpin_MouseDown"/>
+                            <StackPanel>
+                                <m:Pushpin Location="{Binding Location}" Content="{Binding Name}" MouseDown="Pushpin_MouseDown"/>
+                                <ItemsControl ItemsSource="{Binding Items}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <uc:Card Source="{Binding Source}" Title="{Binding Title}" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
                         </DataTemplate>
                     </m:MapItemsControl.ItemTemplate>
+
                 </m:MapItemsControl>
             </m:Map>
         </Grid>
