@@ -22,8 +22,8 @@
             </Border.Style>
 
             <StackPanel Height="72">
-                <TextBlock Text="{Binding Path=Title,ElementName=productmap}" TextAlignment="Center" FontSize="14" FontWeight="SemiBold"/>
-                <Image Source="{Binding Path=Source,ElementName=productmap}" Width="63" Margin="0 0 0 10" Height="53"/>
+                <TextBlock Text="{Binding Path=Title,ElementName=card}" TextAlignment="Center" FontSize="14" FontWeight="SemiBold"/>
+                <Image Source="{Binding Path=Source,ElementName=card}" Width="63" Margin="0 0 0 10" Height="53"/>
             </StackPanel>
         </Border>
         <Polygon Points="0,0 20,20 40,0" Fill="#e9e9e9" VerticalAlignment="Top" Height="20" Margin="28,97,29,0"/>

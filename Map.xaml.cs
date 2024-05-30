@@ -57,40 +57,68 @@ namespace heritage_rhythm
         */
         private void LoadMapData(string region)
         {
-            var heritageItems = GetHeritageItems(region);
-            mapItems.ItemsSource = heritageItems;  // 确保你的XAML中有MapItemsControl绑定到此数据源
+            var heritageItems = new List<HeritageItem>
+    {
+        new HeritageItem
+        {
+            Title = "非遗项目1",
+            Source = "Images/project1.jpg",
+            Location = new Location(39.9042, 116.4074) // 北京
+        },
+        new HeritageItem
+        {
+            Title = "非遗项目2",
+            Source = "Images/project2.jpg",
+            Location = new Location(31.2304, 121.4737) // 上海
+        },
+        new HeritageItem
+        {
+            Title = "非遗项目3",
+            Source = "Images/project3.jpg",
+            Location = new Location(23.1291, 113.2644) // 广州
+        }
+    };
+            mapItems.ItemsSource = heritageItems;
+        }
+        private void selectedbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // 假设每个ComboBoxItem的Content对应一个地点的名称
+            if (selectedbox.SelectedItem is ComboBoxItem selected)
+            {
+                var region = selected.Content.ToString();
+                var location = GetLocationByRegion(region);
+                if (location != null)
+                {
+                    myMap.Center = location;
+                    myMap.ZoomLevel = 10;  // 或者任何适合的缩放级别
+                }
+            }
         }
 
-        private List<HeritageItem> GetHeritageItems(string region)
+        private Location GetLocationByRegion(string region)
         {
-            // 创建假数据
-            return new List<HeritageItem>
+            // 这个方法应该根据地区名称返回相应的位置
+            // 这里假设你有一个方法可以查询这些信息
+            switch (region)
             {
-                new HeritageItem
-                {
-                    Name = "非遗项目1",
-                    ImagePath = "Images/p1.jpg",
-                    Location = new Location(39.9042, 116.4074) // 北京
-                },
-                new HeritageItem
-                {
-                    Name = "非遗项目2",
-                    ImagePath = "Images/p2.jpg",
-                    Location = new Location(31.2304, 121.4737) // 上海
-                },
-                new HeritageItem
-                {
-                    Name = "非遗项目3",
-                    ImagePath = "Images/p3.jpg",
-                    Location = new Location(23.1291, 113.2644) // 广州
-                }
-            };
+                case "北京市":
+                    return new Location(39.9042, 116.4074); // 北京的坐标
+                case "上海市":
+                    return new Location(31.2304, 121.4737); // 上海的坐标
+                case "广州市":
+                    return new Location(23.1291, 113.2644); // 广州的坐标
+                default:
+                    return null;
+            }
         }
+
         // 商品信息类，如果还未定义
         public class HeritageItem
-    {
-        public string Name { get; set; }
-        public string ImagePath { get; set; }
-        public Location Location { get; set; }
+        {
+            public string Title { get; set; }
+            public string Source { get; set; }
+            public Location Location { get; set; }
+        }
+
     }
 }

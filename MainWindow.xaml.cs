@@ -260,5 +260,12 @@ namespace heritage_rhythm
             this.Close();
         }
 
+        private void MenuButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Source = new Uri("Map.xaml", UriKind.Relative);
+
+            // 更新 MenuButton 的激活状态
+            UpdateMenuButtonActiveState(sender as MenuButton);
+        }
     }
 }

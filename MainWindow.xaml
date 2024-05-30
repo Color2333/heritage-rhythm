@@ -100,7 +100,9 @@
 
                     <uc:MenuButton Title="首页" IsActive="True"
                                    Icon="HomeOutline"  Click="MainPageButton_Click"/>
-
+                    
+                    <uc:MenuButton Title="非遗地图" 
+                                   Icon="HomeOutline"  Click="MenuButton_Click_1"/>
                     <uc:MenuButton Title="购物车"
                                    Icon="ChartTimelineVariantShimmer" Click="ShopingCarButton_Click" />
 

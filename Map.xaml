@@ -26,22 +26,18 @@
                 <ColumnDefinition Width="300"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <m:Map Name="myMap" Grid.Row="0" Grid.Column="1" CredentialsProvider="jhrKjlErTNsUEy5DWn5I~G-B5fa3KRljbAaWUQnqf8w~Am38ltg2981KRC6jA8bzs_nFvuILystAcK8KlCU45g6CfLsHrHEi-mYHzqh0JPwj" Center="35.86166, 104.195397" ZoomLevel="5" Margin="0,0,10,10" Mode="Road">
+            <m:Map Name="myMap" Grid.Row="0" Grid.Column="1" CredentialsProvider="eK7w50ADxCy6uyzaHYMa~G4qSgBWftbCQa0A2jHZ8Rg~ApVWHcuccmztDatgMZqJWAWCeWtZH9YzeUVCQYntzQCXFd9fKqgUzUOlcRwN9vXf" Center="35.86166, 104.195397" ZoomLevel="5" Margin="0,0,10,10" Mode="Road">
                 <m:MapLayer x:Name="overlayLayer" />
-                <m:MapItemsControl Name="mapItems" Margin="0,0,0,0">
+                <m:MapItemsControl Name="mapItems" Margin="0,0,0,0" Width="100" Height="100">
                     <m:MapItemsControl.ItemTemplate>
                         <DataTemplate>
                             <m:Pushpin Location="{Binding Location}">
                                 <m:Pushpin.Template>
                                     <ControlTemplate>
-                                        <uc:Card>
-                                            <uc:Card.Title>
-                                                <Binding Path="Name"/>
-                                            </uc:Card.Title>
-                                            <uc:Card.Source>
-                                                <Binding Path="ImagePath"/>
-                                            </uc:Card.Source>
-                                        </uc:Card>
+                                        <StackPanel>
+                                            <Image Source="{Binding ImagePath}" Width="30" Height="30"/>
+                                            <TextBlock Text="{Binding Title}" Background="Black"/>
+                                        </StackPanel>
                                     </ControlTemplate>
                                 </m:Pushpin.Template>
                             </m:Pushpin>
@@ -49,14 +45,13 @@
                     </m:MapItemsControl.ItemTemplate>
                 </m:MapItemsControl>
             </m:Map>
-            <Border Style="{StaticResource whiteBorder}" VerticalAlignment="Top" Height="158"/>
-            <ComboBox x:Name="selectedbox" Grid.Column="0" VerticalAlignment="Top" Style="{StaticResource ComboBoxStyle3}" Margin="23,177,23,0" >
+            <ComboBox x:Name="selectedbox" Grid.Column="0" VerticalAlignment="Top"  Margin="23,23,23,0" SelectionChanged="selectedbox_SelectionChanged" >
                 <ComboBoxItem Content="中国" />
                 <ComboBoxItem Content="北京市" />
                 <ComboBoxItem Content="上海市" />
                 <ComboBoxItem Content="广州市" />
             </ComboBox>
-            <Border Style="{StaticResource whiteBorder}" VerticalAlignment="Bottom">
+            <Border Style="{StaticResource whiteBorder}" VerticalAlignment="Top" Height="627" Margin="0,100,0,0">
                 <StackPanel>
                     <TextBlock Text="当前区域最受欢迎商家" Style="{StaticResource titleText4}"/>
                     <TextBlock Text="这里是最受欢迎商家展示" TextWrapping="Wrap" Margin="0 10 0 10" Style="{StaticResource secondaryText4}"/>

@@ -16,7 +16,7 @@ namespace heritage_rhythm.UserControls
             set { SetValue(TitleProperty, value); }
         }
 
-        public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("Day", typeof(string), typeof(Card));
+        public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("Title", typeof(string), typeof(Card));
 
 
         public ImageSource Source
