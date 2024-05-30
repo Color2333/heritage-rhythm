@@ -31,33 +31,41 @@
                 <m:MapItemsControl Name="mapItems" Margin="0,0,0,0">
                     <m:MapItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
-                                <m:Pushpin Location="{Binding Location}" Content="{Binding Name}" MouseDown="Pushpin_MouseDown"/>
-                                <ItemsControl ItemsSource="{Binding Items}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <uc:Card Source="{Binding Source}" Title="{Binding Title}" />
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
+                            <m:Pushpin Location="{Binding Location}">
+                                <m:Pushpin.Template>
+                                    <ControlTemplate>
+                                        <uc:Card>
+                                            <uc:Card.Title>
+                                                <Binding Path="Name"/>
+                                            </uc:Card.Title>
+                                            <uc:Card.Source>
+                                                <Binding Path="ImagePath"/>
+                                            </uc:Card.Source>
+                                        </uc:Card>
+                                    </ControlTemplate>
+                                </m:Pushpin.Template>
+                            </m:Pushpin>
                         </DataTemplate>
                     </m:MapItemsControl.ItemTemplate>
-
                 </m:MapItemsControl>
             </m:Map>
             <Border Style="{StaticResource whiteBorder}" VerticalAlignment="Top" Height="158"/>
-            <ComboBox x:Name="selectedbox" Grid.Column="0" VerticalAlignment="Top" Style="{StaticResource ComboBoxStyle3}" Margin="23,177,23,0" />
+            <ComboBox x:Name="selectedbox" Grid.Column="0" VerticalAlignment="Top" Style="{StaticResource ComboBoxStyle3}" Margin="23,177,23,0" >
+                <ComboBoxItem Content="中国" />
+                <ComboBoxItem Content="北京市" />
+                <ComboBoxItem Content="上海市" />
+                <ComboBoxItem Content="广州市" />
+            </ComboBox>
             <Border Style="{StaticResource whiteBorder}" VerticalAlignment="Bottom">
                 <StackPanel>
-                    <TextBlock Text="当前区域最受欢迎商品" Style="{StaticResource titleText4}"/>
+                    <TextBlock Text="当前区域最受欢迎商家" Style="{StaticResource titleText4}"/>
                     <TextBlock Text="这里是最受欢迎商家展示" TextWrapping="Wrap" Margin="0 10 0 10" Style="{StaticResource secondaryText4}"/>
 
                     <uc:ProductCard Title="济忆山海" IsActive="True" merchant="3256"  Image="/Images/1.png"/>
                     <uc:ProductCard Title="非遗文化" merchant="2049"  Image="/Images/2.png"/>
+                    <uc:ProductCard Title="石库门传奇" merchant="1105"  Image="/Images/3.png"/>
                     <uc:ProductCard Title="助农河南" merchant="1105"  Image="/Images/3.png"/>
-                    <uc:ProductCard Title="助农河南" merchant="1105"  Image="/Images/3.png"/>
-                    <uc:ProductCard Title="助农河南" merchant="1105"  Image="/Images/3.png"/>
+                    <uc:ProductCard Title="助力成都" merchant="1105"  Image="/Images/3.png"/>
                 </StackPanel>
             </Border>
         </Grid>

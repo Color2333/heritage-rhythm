@@ -105,7 +105,7 @@
             </StackPanel>
 
             <Button Content="立即支付" FontSize="30" Style="{StaticResource buttonCheckout}" Click="CheckoutButton_Click"/>
-            <ComboBox x:Name="addressComboBox" Style="{StaticResource ComboBoxStyle1}" Margin="10,339,92,451"/>
+            <ComboBox x:Name="addressComboBox" Style="{StaticResource ComboBoxStyle1}" Margin="52,334,50,456"/>
         </Grid>
     </Grid>
 </Page>

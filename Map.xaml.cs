@@ -1,129 +1,96 @@
-﻿using heritage_rhythm.UserControls;
-using Microsoft.Maps.MapControl.WPF;
-using System.Collections.Generic;
+﻿using System;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
-
+using System.Collections.Generic;
+using Microsoft.Maps.MapControl.WPF;
+using System.Data.SqlClient; // 确保已引用System.Data命名空间
 
 namespace heritage_rhythm
 {
-    /// <summary>
-    /// Map.xaml 的交互逻辑
-    /// </summary>
     public partial class Map : Page
     {
+        private SqlConnection connection;
+
         public Map()
         {
             InitializeComponent();
-            LoadMapData("China");
-            OverlayNonChinaRegions();
+            DNO dno = new DNO();
+            connection = dno.Connection(); // 使用你提供的方法获取数据库连接
+            LoadMapData("上海");  // 你可以根据实际情况传递区域参数
         }
+
+        /*private void LoadMapData(string region)
+        {
+            var heritageItems = GetHeritageItems(region);
+            mapItems.ItemsSource = heritageItems;  // 确保你的XAML中有MapItemsControl绑定到此数据源
+        }
+
+        private List<HeritageItem> GetHeritageItems(string region)
+        {
+            var items = new List<HeritageItem>();
+            string sql = @"
+            SELECT name, imagePath, latitude, longitude 
+            FROM products 
+            WHERE province = @province AND category = '非遗'";
+
+            using (var command = new SqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@province", region);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var item = new HeritageItem
+                        {
+                            Name = reader["name"] as string,
+                            ImagePath = reader["imagePath"] as string,
+                            Location = new Location(Convert.ToDouble(reader["latitude"]), Convert.ToDouble(reader["longitude"]))
+                        };
+                        items.Add(item);
+                    }
+                }
+                connection.Close();
+            }
+            return items;
+        }
+    }
+        */
         private void LoadMapData(string region)
         {
-            var heritageItems = new List<HeritageItem>();
-
-            switch (region)
-            {
-                case "China":
-                    heritageItems.Add(new HeritageItem { Name = "非遗项目1", Location = new Location(39.9042, 116.4074) }); // 北京
-                    heritageItems.Add(new HeritageItem { Name = "非遗项目2", Location = new Location(31.2304, 121.4737) }); // 上海
-                    heritageItems.Add(new HeritageItem { Name = "非遗项目3", Location = new Location(23.1291, 113.2644) }); // 广州
-                    myMap.Center = new Location(35.86166, 104.195397);
-                    myMap.ZoomLevel = 5;
-                    break;
-
-                case "Beijing":
-                    heritageItems.Add(new HeritageItem { Name = "北京非遗项目1", Location = new Location(39.9042, 116.4074) });
-                    heritageItems.Add(new HeritageItem { Name = "北京非遗项目2", Location = new Location(39.9139, 116.3917) });
-                    myMap.Center = new Location(39.9042, 116.4074);
-                    myMap.ZoomLevel = 10;
-                    break;
-
-                case "Shanghai":
-                    heritageItems.Add(new HeritageItem { Name = "上海非遗项目1", Location = new Location(31.2304, 121.4737) });
-                    heritageItems.Add(new HeritageItem { Name = "上海非遗项目2", Location = new Location(31.2159, 121.4894) });
-                    myMap.Center = new Location(31.2304, 121.4737);
-                    myMap.ZoomLevel = 10;
-                    break;
-
-                case "Guangdong":
-                    heritageItems.Add(new HeritageItem { Name = "广东非遗项目1", Location = new Location(23.1291, 113.2644) }); // 广州
-                    heritageItems.Add(new HeritageItem { Name = "广东非遗项目2", Location = new Location(22.5431, 114.0579) }); // 深圳
-                    myMap.Center = new Location(23.1291, 113.2644);
-                    myMap.ZoomLevel = 8;
-                    break;
-
-                    // Add more cases for other provinces
-            }
-
-            mapItems.ItemsSource = heritageItems;
+            var heritageItems = GetHeritageItems(region);
+            mapItems.ItemsSource = heritageItems;  // 确保你的XAML中有MapItemsControl绑定到此数据源
         }
 
-        private void ProvinceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private List<HeritageItem> GetHeritageItems(string region)
         {
-            /*if (provinceComboBox.SelectedItem is ComboBoxItem selectedItem)
+            // 创建假数据
+            return new List<HeritageItem>
             {
-                string selectedProvince = selectedItem.Content.ToString();
-                LoadMapData(selectedProvince);
-            }*/
-        }
-
-        private void Pushpin_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (sender is Pushpin pushpin && pushpin.DataContext is HeritageItem item)
-            {
-                //infoTextBlock.Text = $"名称: {item.Name}\n位置: {item.Location.Latitude}, {item.Location.Longitude}";
-            }
-        }
-
-        private void OverlayNonChinaRegions()
-        {
-            // Define the boundary coordinates of China
-            var chinaBoundary = new List<Location>
-            {
-                new Location(53.5606, 73.6754),  // Upper left corner
-                new Location(53.5606, 135.0834), // Upper right corner
-                new Location(3.8370, 135.0834),  // Lower right corner
-                new Location(3.8370, 73.6754)    // Lower left corner
-            };
-
-            // Define the boundary of the entire map
-            var mapBoundary = new List<Location>
-            {
-                new Location(85, -180), // Upper left corner
-                new Location(85, 180),  // Upper right corner
-                new Location(-85, 180), // Lower right corner
-                new Location(-85, -180) // Lower left corner
-            };
-
-            // Create a polygon to cover the non-China regions
-            var nonChinaRegion = new MapPolygon
-            {
-                Locations = new LocationCollection
+                new HeritageItem
                 {
-                    mapBoundary[0],
-                    mapBoundary[1],
-                    chinaBoundary[1],
-                    chinaBoundary[0],
-                    chinaBoundary[3],
-                    chinaBoundary[2],
-                    mapBoundary[2],
-                    mapBoundary[3]
+                    Name = "非遗项目1",
+                    ImagePath = "Images/p1.jpg",
+                    Location = new Location(39.9042, 116.4074) // 北京
                 },
-                Fill = new SolidColorBrush(Color.FromArgb(100, 0, 0, 0)),
-                StrokeThickness = 0
+                new HeritageItem
+                {
+                    Name = "非遗项目2",
+                    ImagePath = "Images/p2.jpg",
+                    Location = new Location(31.2304, 121.4737) // 上海
+                },
+                new HeritageItem
+                {
+                    Name = "非遗项目3",
+                    ImagePath = "Images/p3.jpg",
+                    Location = new Location(23.1291, 113.2644) // 广州
+                }
             };
-
-            overlayLayer.Children.Add(nonChinaRegion);
         }
-    }
-
-    public class HeritageItem
+        // 商品信息类，如果还未定义
+        public class HeritageItem
     {
         public string Name { get; set; }
+        public string ImagePath { get; set; }
         public Location Location { get; set; }
-        public List<Card> Items { get; set; } = new List<Card>();
     }
-
 }
