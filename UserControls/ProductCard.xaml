@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="heritage_rhythm.UserControls.ProductCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks" 
+             Name="productCard">
+
+    <Border CornerRadius="10" Padding="3" Margin="0 10">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#F7F6F4" />
+                    </Trigger>
+
+                    <DataTrigger Binding="{Binding ElementName=productCard,Path=IsActive}" Value="True">
+                        <Setter Property="Background" Value="#F7F6F4" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+
+        <StackPanel Orientation="Horizontal">
+            <Border Width="50" Height="50" CornerRadius="10" Margin="0 0 10 0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="#7CB8FF" Offset="0"/>
+                        <GradientStop Color="#B2D3FE" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Image Source="{Binding ElementName=productCard,Path=Image}" Width="38" Height="38"/>
+            </Border>
+
+            <StackPanel>
+                <TextBlock Text="{Binding ElementName=productCard,Path=Title}" FontWeight="SemiBold" FontSize="13" Foreground="#214865"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+
+                    <Border Background="#76728B" CornerRadius="50" Width="20" Height="20">
+                        <Icon:PackIconMaterial Kind="ChevronDown" VerticalAlignment="Center" HorizontalAlignment="Center" Width="8" Height="8" Foreground="#ffffff"/>
+                    </Border>
+                    
+                    <StackPanel Margin="10 0 10 0">
+                        <TextBlock Text="{Binding merchant, ElementName=productCard}" FontSize="11" Foreground="#17405E" Height="19"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

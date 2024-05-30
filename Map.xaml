@@ -9,22 +9,26 @@
       Title="Map" Background="#ECF0F1">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Grid Background="#ECF0F1" Grid.Row="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-
-            </Grid.RowDefinitions>
-
             <!--Title-->
             <StackPanel Orientation="Horizontal" Margin="0 40 0 30" Grid.Row="0">
                 <TextBlock Text="遗韵" FontSize="28" FontWeight="SemiBold" FontFamily="Trebuchet MS" VerticalAlignment="Center" Margin="50 0 0 0"/>
                 <Rectangle VerticalAlignment="Stretch" Fill="#808080" Width="0.7" Margin="20 5 20 5"/>
                 <TextBlock Text="漫游地图" FontSize="26" VerticalAlignment="Center"/>
             </StackPanel>
-            <m:Map Name="myMap" Grid.Row="1" CredentialsProvider="jhrKjlErTNsUEy5DWn5I~G-B5fa3KRljbAaWUQnqf8w~Am38ltg2981KRC6jA8bzs_nFvuILystAcK8KlCU45g6CfLsHrHEi-mYHzqh0JPwj" Center="35.86166, 104.195397" ZoomLevel="5" Margin="10,40,1,10" Mode="Road">
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <m:Map Name="myMap" Grid.Row="0" Grid.Column="1" CredentialsProvider="jhrKjlErTNsUEy5DWn5I~G-B5fa3KRljbAaWUQnqf8w~Am38ltg2981KRC6jA8bzs_nFvuILystAcK8KlCU45g6CfLsHrHEi-mYHzqh0JPwj" Center="35.86166, 104.195397" ZoomLevel="5" Margin="0,0,10,10" Mode="Road">
                 <m:MapLayer x:Name="overlayLayer" />
-                <m:MapItemsControl Name="mapItems">
+                <m:MapItemsControl Name="mapItems" Margin="0,0,0,0">
                     <m:MapItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
@@ -42,7 +46,20 @@
 
                 </m:MapItemsControl>
             </m:Map>
-        </Grid>
+            <Border Style="{StaticResource whiteBorder}" VerticalAlignment="Top" Height="158"/>
+            <ComboBox x:Name="selectedbox" Grid.Column="0" VerticalAlignment="Top" Style="{StaticResource ComboBoxStyle3}" Margin="23,177,23,0" />
+            <Border Style="{StaticResource whiteBorder}" VerticalAlignment="Bottom">
+                <StackPanel>
+                    <TextBlock Text="当前区域最受欢迎商品" Style="{StaticResource titleText4}"/>
+                    <TextBlock Text="这里是最受欢迎商家展示" TextWrapping="Wrap" Margin="0 10 0 10" Style="{StaticResource secondaryText4}"/>
 
+                    <uc:ProductCard Title="济忆山海" IsActive="True" merchant="3256"  Image="/Images/1.png"/>
+                    <uc:ProductCard Title="非遗文化" merchant="2049"  Image="/Images/2.png"/>
+                    <uc:ProductCard Title="助农河南" merchant="1105"  Image="/Images/3.png"/>
+                    <uc:ProductCard Title="助农河南" merchant="1105"  Image="/Images/3.png"/>
+                    <uc:ProductCard Title="助农河南" merchant="1105"  Image="/Images/3.png"/>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </Page>

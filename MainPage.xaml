@@ -44,7 +44,7 @@
                     <ColumnDefinition Width="26*"/>
                     <ColumnDefinition Width="67*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="商品" FontSize="20" Foreground="#333333" FontWeight="Bold" HorizontalAlignment="Left"/>
+                <Label Content="非遗商品展览" FontSize="20" Foreground="#333333" FontWeight="Bold" HorizontalAlignment="Left"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="1" Margin="528,0,0,0">
                     <Label x:Name="popularlabel" Content="热度最高" Style="{StaticResource activeTextButton}" MouseUp="Likelabel_OnMouseUp"/>
